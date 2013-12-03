@@ -46,7 +46,7 @@
 			outputFiles = (
 				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).m",
 			);
-			script = "[ -f greg/Makefile ] || { cat <<MESSAGE; exit 1; }\n\nAttributedMarkdown requires the greg parser generator.  Run the following to get it.\n\n    git submodule update --init --recursive\n\nMESSAGE\nunset LD_MAP_FILE_PATH\nunset SDKROOT\nunset IPHONEOS_DEPLOYMENT_TARGET\nunset MACOSX_DEPLOYMENT_TARGET\nmake -C $TEMP_DIR -f $INPUT_FILE_DIR/greg/Makefile VPATH=$INPUT_FILE_DIR/greg || exit $?\n$TEMP_DIR/greg -o $DERIVED_FILES_DIR/${INPUT_FILE_BASE}.m $INPUT_FILE_PATH";
+			script = "[ -f greg/Makefile ] || { cat <<MESSAGE; exit 1; }\n\nAttributedMarkdown requires the greg parser generator.  Run the following to get it.\n\n    git submodule update --init --recursive\n\nMESSAGE\nSDKROOT= make -C $TEMP_DIR -f $INPUT_FILE_DIR/greg/Makefile VPATH=$INPUT_FILE_DIR/greg || exit $?\n$TEMP_DIR/greg -o $DERIVED_FILES_DIR/${INPUT_FILE_BASE}.m $INPUT_FILE_PATH";
 		};
 /* End PBXBuildRule section */
 
@@ -630,7 +630,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -639,7 +639,6 @@
 				GCC_PREFIX_HEADER = "attributed-markdown.pch";
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -653,7 +652,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD_32_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -662,7 +661,6 @@
 				GCC_PREFIX_HEADER = "attributed-markdown.pch";
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = "";
